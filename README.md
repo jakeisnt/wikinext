@@ -1,4 +1,4 @@
-# org-braindump
+# wikinext
 
 This example showcases how you can use [uniorg][uniorg] and [Next.js][nextjs] to publish a simple website from Org files. It is tailored to publishing a collection of interlinked notes.
 

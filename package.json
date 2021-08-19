@@ -1,11 +1,12 @@
 {
-  "name": "org-braindump",
-  "version": "0.1.20",
+  "name": "wikinext",
+  "version": "0.0.1",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "export": "next export",
   },
   "dependencies": {
     "next": "11.1.0",
