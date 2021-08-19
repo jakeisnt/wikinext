@@ -1,11 +1,12 @@
-import * as path from 'path';
-import trough from 'trough';
-import toVFile from 'to-vfile';
-import findDown from 'vfile-find-down';
-import rename from 'vfile-rename';
-import report from 'vfile-reporter';
+import * as path from "path";
+import trough from "trough";
+import toVFile from "to-vfile";
+import findDown from "vfile-find-down";
+import rename from "vfile-rename";
+import report from "vfile-reporter";
 
-import orgToHtml from './orgToHtml';
+import orgToHtml from "./orgToHtml";
+import resolveLinks from "./resolveLinks";
 
 // We serve posts from "public" directory, so that we don't have to
 // copy assets.
@@ -13,17 +14,18 @@ import orgToHtml from './orgToHtml';
 // If you change this directory, make sure you copy all assets
 // (images, linked files) to the public directory, so that next.js
 // serves them.
-const pagesDirectory = path.join(process.cwd(), 'public');
+const pagesDirectory = path.join(process.cwd(), "public");
 
 const processor = trough()
   .use(collectFiles)
   .use(processPosts)
+  .use(resolveLinks)
   .use(populateBacklinks);
 
 function collectFiles(root) {
   return new Promise((resolve, reject) => {
     findDown.all(
-      (f, stats) => stats.isFile() && f.basename.endsWith('.org'),
+      (f, stats) => stats.isFile() && f.basename.endsWith(".org"),
       root,
       (err, files) => {
         if (err) {
@@ -31,7 +33,7 @@ function collectFiles(root) {
         } else {
           files.forEach((f) => {
             const slug =
-              '/' + path.relative(root, f.path).replace(/\.org$/, '');
+              "/" + path.relative(root, f.path).replace(/\.org$/, "");
             f.data.slug = slug;
           });
           resolve(files);
@@ -46,9 +48,9 @@ async function processPosts(files) {
 
   async function processPost(file) {
     try {
-      await toVFile.read(file, 'utf8');
+      await toVFile.read(file, "utf8");
     } catch (e) {
-      console.error('Error reading file', file, e);
+      console.error("Error reading file", file, e);
       throw e;
     }
 
