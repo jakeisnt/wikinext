@@ -3,13 +3,14 @@ import Head from "next/head";
 import { getAllPosts } from "../lib/api";
 import Link from "../components/Link";
 
-const Archive = ({ posts }) => {
+const Journals = ({ posts }) => {
+  console.log(posts);
   return (
     <main>
       <Head>
-        <title>{"Archive"}</title>
+        <title>{"Journals"}</title>
       </Head>
-      <h1>{"Archive"}</h1>
+      <h1>{"Journals"}</h1>
       <ul>
         {posts.map((p) => (
           <li key={p.path}>
@@ -20,17 +21,19 @@ const Archive = ({ posts }) => {
     </main>
   );
 };
-export default Archive;
-
-const PAGES_PATH = "/pages";
+export default Journals;
+const JOURNAL_PATH = "/journals";
 
 export const getStaticProps = async () => {
   const allPosts = await getAllPosts();
   const posts = allPosts
     .map((p) => ({ title: p.data.title || p.basename, path: p.path }))
-    .filter((p) => p.path.startsWith(PAGES_PATH))
-    .sort((a, b) => {
-      return a.title.toLowerCase() < b.title.toLowerCase() ? -1 : 1;
-    });
+    .filter((p) => p.path.startsWith(JOURNAL_PATH))
+    .map((p) => ({
+      ...p,
+      date: new Date(p.path.substring(JOURNAL_PATH.length)),
+    }))
+    .sort((a, b) => b.date - a.date)
+    .map((p) => ({ ...p, date: p.date.toString() }));
   return { props: { posts } };
 };
