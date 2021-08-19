@@ -22,6 +22,8 @@ const Note = ({ title, hast, backlinks, data }) => {
       <h1>{title}</h1>
       <a
         href={`https://github.com/jakeisnt/wiki/edit/main${getUrl(router)}.org`}
+        target="_blank"
+        rel="noreferrer noopener"
       >
         EDIT
       </a>
