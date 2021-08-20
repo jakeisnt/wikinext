@@ -21,13 +21,18 @@ const Note = ({ title, hast, backlinks, data }) => {
         <script src="https://hypothes.is/embed.js" async></script>
       </Head>
       <h1>{title}</h1>
-      <a
-        href={`https://github.com/jakeisnt/wiki/edit/main${getUrl(router)}.org`}
-        target="_blank"
-        rel="noreferrer noopener"
-      >
-        EDIT
-      </a>
+      <div style={{ display: "flex", flexDirection: "column" }}>
+        <Link href="/">GO HOME</Link>
+        <Link
+          href={`https://github.com/jakeisnt/wiki/edit/main${getUrl(
+            router
+          )}.org`}
+          target="_blank"
+          rel="noreferrer noopener"
+        >
+          EDIT
+        </Link>
+      </div>
       <Rehype hast={hast} />
       {!!backlinks.length && (
         <section>
