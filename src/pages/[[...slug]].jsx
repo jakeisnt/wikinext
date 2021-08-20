@@ -18,6 +18,7 @@ const Note = ({ title, hast, backlinks, data }) => {
     <main>
       <Head>
         <title>{title}</title>
+        <script src="https://hypothes.is/embed.js" async></script>
       </Head>
       <h1>{title}</h1>
       <a
