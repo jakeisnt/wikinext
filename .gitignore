@@ -12,5 +12,8 @@ yarn-error.log*
 .npm
 .eslintcache
 .next/
-public/
+public/*.org
+public/**/*.org
 out/
+
+.vercel
