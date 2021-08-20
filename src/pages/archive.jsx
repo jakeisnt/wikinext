@@ -7,9 +7,9 @@ const Archive = ({ posts }) => {
   return (
     <main>
       <Head>
-        <title>{"Archive"}</title>
+        <title>Archive</title>
       </Head>
-      <h1>{"Archive"}</h1>
+      <h1>Archive</h1>
       <ul>
         {posts.map((p) => (
           <li key={p.path}>
