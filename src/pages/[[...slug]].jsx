@@ -22,7 +22,7 @@ const Note = ({ title, hast, backlinks, data }) => {
       </Head>
       <h1>{title}</h1>
       <div style={{ display: "flex", flexDirection: "column" }}>
-        <Link href="/">GO HOME</Link>
+        {router.asPath !== "/" && <Link href="/">GO HOME</Link>}
         <Link
           href={`https://github.com/jakeisnt/wiki/edit/main${getUrl(
             router
