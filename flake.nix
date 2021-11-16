@@ -2,15 +2,11 @@
   description = "Jake Chvatal's CV";
 
   inputs = {
-    catala = {
-      url = "github:CatalaLang/catala";
-      flake = false;
-    };
     nixpkgs.url = "nixpkgs/nixos-unstable";
     utils.url = "github:numtide/flake-utils";
   };
 
-  outputs = { self, nixpkgs, utils, catala, ... }:
+  outputs = { self, nixpkgs, utils, ... }:
     utils.lib.eachDefaultSystem (system:
       let
         inherit (lib) attrValues;
@@ -18,7 +14,7 @@
         lib = nixpkgs.lib;
       in {
         devShell = pkgs.mkShell {
-          buildInputs = with pkgs; [ catala ];
+          buildInputs = with pkgs; [ ninja python3 nodejs ];
         };
     });
 }
