@@ -4,9 +4,13 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "export": "next build && next export"
+    "build": "rescript && next build",
+    "now-build": "rescript && next build",
+    "export": "next export",
+    "start": "next start -p $PORT",
+    "res:build": "rescript",
+    "res:clean": "rescript clean",
+    "res:start": "rescript build -w"
   },
   "dependencies": {
     "next": "11.1.1",
@@ -28,6 +32,15 @@
   },
   "devDependencies": {
     "eslint": "7.32.0",
-    "eslint-config-next": "11.1.0"
+    "eslint-config-next": "11.1.0",
+    "next-transpile-modules": "7.1.2",
+    "@rescript/react": "0.10.3",
+    "gentype": "4.1",
+    "autoprefixer": "10.1.0",
+    "rescript": "9.1",
+    "cssnano": "5.0.5",
+    "postcss": "8.2.15",
+    "postcss-cli": "8.3.1",
+    "tailwindcss": "2.0.4"
   }
 }
