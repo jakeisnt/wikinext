@@ -14,7 +14,7 @@
         lib = nixpkgs.lib;
       in {
         devShell = pkgs.mkShell {
-          buildInputs = with pkgs; [ ninja python3 nodejs ];
+          buildInputs = with pkgs; [ ninja python3 nodejs nodePackages.ocaml-language-server ocamlPackages.reason-native.refmterr ];
         };
     });
 }
